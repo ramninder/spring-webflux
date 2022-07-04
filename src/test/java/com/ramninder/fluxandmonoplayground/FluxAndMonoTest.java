@@ -73,6 +73,15 @@ public class FluxAndMonoTest {
                 .verifyComplete();
      }
 
+    @Test
+    public void monoTestError(){
+        Mono<String> stringMono =  Mono.error(new RuntimeException("Exception occurred"));
+
+        StepVerifier.create(stringMono.log())
+                .expectError(RuntimeException.class)
+                .verify();
+    }
+
 
 
     }
