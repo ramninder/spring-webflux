@@ -16,4 +16,13 @@ public class SampleHandlerFunction {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Flux.just(1,2,3,4).log(), Integer.class);
     }
+
+    public Mono<ServerResponse> returnMono(ServerRequest serverRequest){
+
+        return  ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Flux.just(1).log(), Integer.class);
+    }
+
 }
+

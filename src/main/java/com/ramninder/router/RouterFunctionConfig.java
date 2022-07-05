@@ -18,6 +18,8 @@ public class RouterFunctionConfig {
     public RouterFunction<ServerResponse> route(SampleHandlerFunction sampleHandlerFunction){
 
         return RouterFunctions.route(GET("/functional/flux").
-                and(accept(MediaType.APPLICATION_JSON)), sampleHandlerFunction:: returnFlux);
+                and(accept(MediaType.APPLICATION_JSON)), sampleHandlerFunction:: returnFlux)
+                .andRoute(GET("/functional/mono").
+                        and(accept(MediaType.APPLICATION_JSON)), sampleHandlerFunction:: returnMono);
     }
 }
