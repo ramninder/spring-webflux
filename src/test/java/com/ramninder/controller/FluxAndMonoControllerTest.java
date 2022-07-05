@@ -40,6 +40,7 @@ public class FluxAndMonoControllerTest {
 
     @Test
     public void  fluxTest_approach2(){
+
          webTestClient.get().uri("/flux")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
@@ -63,6 +64,22 @@ public class FluxAndMonoControllerTest {
                 .returnResult();
 
         assertEquals(expectedIntegerList, entityExchangeResult.getResponseBody());
+
+    }
+
+    @Test
+    public  void fluxTest_approach4(){
+
+        List<Integer> expectedIntegerList  = Arrays.asList(1,2,3,4);
+
+          webTestClient.get().uri("/flux")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Integer.class)
+                .consumeWith((response)->{
+                    assertEquals(expectedIntegerList, response.getResponseBody());
+                });
 
     }
 
